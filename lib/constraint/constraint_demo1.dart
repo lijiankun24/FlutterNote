@@ -9,7 +9,30 @@ class Constraint extends StatelessWidget {
         appBar: AppBar(
           title: Text('Constraint'),
         ),
-        body: _getMultiBox(),
+        body: _getUncnostrainedBox(),
+      ),
+    );
+  }
+
+  // 可以通过 UnconstrainedBox 去除 父Constraint 对 子Constraint 的限制
+  Widget _getUncnostrainedBox() {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        // 父 Constraint
+        minHeight: 100,
+        minWidth: 50,
+      ),
+      child: UnconstrainedBox(
+        // 去除 父Constraint 对 子Constraint 的限制
+        child: ConstrainedBox(
+          // 子 Constraint
+          constraints: BoxConstraints(
+            minHeight: 50,
+            minWidth: 100,
+          ),
+          child: DecoratedBox(
+              decoration: BoxDecoration(color: Colors.deepOrangeAccent)),
+        ),
       ),
     );
   }
@@ -17,12 +40,14 @@ class Constraint extends StatelessWidget {
   Widget _getMultiBox() {
     // 有多重限制时，对于minWidth和minHeight来说，是取父子中相应数值较大的。实际上，只有这样才能保证父限制与子限制不冲突。
     return ConstrainedBox(
-      constraints: BoxConstraints(            // 父
+      constraints: BoxConstraints(
+        // 父
         minWidth: 100,
         minHeight: 20,
       ),
       child: ConstrainedBox(
-        constraints: BoxConstraints(          // 子
+        constraints: BoxConstraints(
+          // 子
           minWidth: 20,
           minHeight: 100,
         ),
