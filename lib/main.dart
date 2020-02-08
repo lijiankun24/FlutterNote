@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'constraint/constraint_demo2.dart';
+import 'animation/animation_demo1.dart';
 
 void main() {
-  runApp(Constraint());
+  runApp(AnimationDemo());
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
