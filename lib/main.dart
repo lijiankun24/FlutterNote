@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'animation/animation_demo2.dart';
+import 'animation/animation_demo3.dart';
 
 void main() {
-  runApp(LogoApp());
+  runApp(AnimationDemo());
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(

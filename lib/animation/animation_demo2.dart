@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 /// https://flutterchina.club/tutorials/animation/
 /// 用AnimatedWidget简化
+/// 查看 AnimatedWidget 源码会发现，其实其中也是通过 [Animation.addListener] 和
+/// [StatefulWidget.setState] 方法实现更新 [build] 方法的
 class AnimationLogo extends AnimatedWidget {
   AnimationLogo({Key key, Animation<double> animation})
       : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
-    Animation<double> curAnimation = listenable;
+    final Animation<double> curAnimation = listenable;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -17,6 +19,7 @@ class AnimationLogo extends AnimatedWidget {
         ),
         body: Center(
           child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 10.0),
             width: curAnimation.value,
             height: curAnimation.value,
             child: FlutterLogo(),
@@ -29,7 +32,7 @@ class AnimationLogo extends AnimatedWidget {
 
 class LogoApp extends StatefulWidget {
   @override
-  State createState() => _LogoAppState();
+  _LogoAppState createState() => _LogoAppState();
 }
 
 class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
@@ -40,7 +43,7 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
     _animation = new Tween(
