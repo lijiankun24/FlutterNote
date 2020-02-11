@@ -74,7 +74,7 @@ class _AppState extends State<AppLogo> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController.dispose()
+    _animationController.dispose();
     super.dispose();
   }
 }
