@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'gesture/GestureDemo.dart';
+import 'stream/StreamDemo.dart';
 
 void main() {
-  runApp(GestureDemo());
+  runApp(StreamDemo());
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
