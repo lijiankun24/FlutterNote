@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-class StreamDemo extends StatelessWidget {
+import 'package:flutter/material.dart';
 
+class StreamDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +12,6 @@ class StreamDemo extends StatelessWidget {
 }
 
 class StreamBuilderDemo extends StatefulWidget {
-
   @override
   _StreamBuilderState createState() => _StreamBuilderState();
 }
@@ -20,12 +19,35 @@ class StreamBuilderDemo extends StatefulWidget {
 class _StreamBuilderState extends State<StreamBuilderDemo> {
   StreamController<int> _streamController = StreamController.broadcast();
   Sink<int> _sink;
-  int _count;
+  int _count = 0;
+
+  StreamController<int> _streamController1;
+  Sink<int> _sink1;
+  StreamSubscription<int> streamSubscription1;
 
   @override
   void initState() {
     super.initState();
     _sink = _streamController.sink;
+    final transform = new StreamTransformer<int, String>.fromHandlers(
+      handleData: (data, newSink) {
+        if (data > 5) {
+          newSink.add('大');
+        } else {
+          newSink.add('小');
+        }
+      },
+    );
+    _streamController.stream.transform(transform).listen((value) {
+      print(value);
+    });
+
+    _streamController1 = new StreamController();
+    _sink1 = _streamController1.sink;
+    _sink1.add(1000);
+    streamSubscription1 = _streamController.stream.listen((value) {
+      print(value.toString());
+    });
   }
 
   @override
@@ -36,15 +58,34 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
       ),
       body: Center(
         child: StreamBuilder(
-          builder: (context, snapshot) => Text('${snapshot.data}')
-          , initialData: _count, stream: _streamController.stream,
+          builder: (context, snapshot) => Text('${snapshot.data}'),
+          initialData: _count,
+          stream: _streamController.stream.where((data) {
+            return data <= 10;
+          }).take(8),
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        _sink.add(++_count);
-      },
-        child: Icon(Icons.add,),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          testSingleStream();
+        },
+        child: Icon(
+          Icons.add,
+        ),
+      ),
     );
+  }
+
+  /// 点击 floatingActionButton 之后 _count 依次增加
+  void _addNumber() {
+    _count = _count + 1;
+    _sink.add(_count);
+  }
+
+  void testSingleStream() {
+    _sink.add(11);
+    _sink.add(12);
+    _sink.add(13);
   }
 
   @override
@@ -52,5 +93,9 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
     super.dispose();
     _sink.close();
     _streamController.close();
+
+    _streamController1.close();
+    _sink1.close();
+    streamSubscription1.cancel();
   }
 }
