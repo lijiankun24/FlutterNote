@@ -23,7 +23,7 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
 
   StreamController<int> _streamController1;
   Sink<int> _sink1;
-  StreamSubscription<int> streamSubscription1;
+  StreamSubscription<int> _streamSubscription1;
 
   @override
   void initState() {
@@ -39,14 +39,14 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
       },
     );
     _streamController.stream.transform(transform).listen((value) {
-      print(value);
+//      print(value);
     });
 
     _streamController1 = new StreamController();
     _sink1 = _streamController1.sink;
-    _sink1.add(1000);
-    streamSubscription1 = _streamController.stream.listen((value) {
-      print(value.toString());
+    _sink1.add(19999000);
+    _streamSubscription1 = _streamController1.stream.listen((value) {
+      print('=======' + value.toString());
     });
   }
 
@@ -83,9 +83,17 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
   }
 
   void testSingleStream() {
-    _sink.add(11);
-    _sink.add(12);
-    _sink.add(13);
+    _sink1.add(11);
+    _sink1.add(12);
+    _sink1.add(13);
+    _streamSubscription1.pause();
+    _sink1.add(14);
+    _sink1.add(15);
+    _sink1.add(16);
+    _streamSubscription1.resume();
+    _sink1.add(17);
+    _sink1.add(18);
+    _sink1.add(19);
   }
 
   @override
@@ -96,6 +104,6 @@ class _StreamBuilderState extends State<StreamBuilderDemo> {
 
     _streamController1.close();
     _sink1.close();
-    streamSubscription1.cancel();
+    _streamSubscription1.cancel();
   }
 }
