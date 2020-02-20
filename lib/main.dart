@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'bloc/BLoCDemo.dart';
+import 'bloc/bloc_demo2.dart';
 
 void main() {
-  runApp(BLoCApp());
+  runApp(BLoCDemo());
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -15,15 +15,4 @@ void main() {
   }
 }
 
-class BLoCApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BLoCProvider(
-      child: MaterialApp(
-        title: 'scoped',
-        theme: ThemeData.dark(),
-        home: BLoCDemo(),
-      ),
-    );
-  }
-}
+

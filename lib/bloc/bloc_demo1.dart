@@ -4,6 +4,21 @@ import 'package:flutter/material.dart';
 
 /// https://juejin.im/post/5bb6f344f265da0aa664d68a
 /// https://juejin.im/post/5cb340d0e51d456e2d69a75e#heading-1
+///
+
+class BLoCApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BLoCProvider(
+      child: MaterialApp(
+        title: 'scoped',
+        theme: ThemeData.dark(),
+        home: BLoCDemo(),
+      ),
+    );
+  }
+}
+
 class BLoCDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
