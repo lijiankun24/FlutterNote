@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'bloc/bloc_demo2.dart';
+import 'bloc/bloc_rxdart.dart';
 
 void main() {
-  runApp(BLoCDemo());
+  runApp(RxDartDemo());
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -14,5 +14,3 @@ void main() {
     );
   }
 }
-
-
