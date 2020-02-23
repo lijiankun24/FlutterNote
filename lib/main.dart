@@ -7,10 +7,11 @@ import 'package:provide/provide.dart';
 import 'provider/model/counter.dart';
 import 'provider/model/switcher.dart';
 import 'provider/provider_demo1.dart';
+import 'net/net_demo1.dart';
 
 void main() {
-//  runApp(RxDartDemo());
-  testProvider();
+  runApp(NetDemo());
+//  testProvider();
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -19,6 +20,7 @@ void main() {
   }
 }
 
+/// Provider 测试
 void testProvider() {
   var counter = Counter();
   var switcher = Switcher();
