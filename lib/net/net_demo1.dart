@@ -31,8 +31,8 @@ class NetDemo extends StatelessWidget {
 
   void netRequest() async {
     HttpClient client;
-    var url =
-        'http://gank.io/api/search/query/listview/category/Android/count/10/page/1';
+    var url = 'http://gank.io'
+        '/api/search/query/listview/category/Android/count/10/page/1';
     try {
       client = HttpClient();
       Uri uri = Uri.parse(url);
@@ -40,7 +40,9 @@ class NetDemo extends StatelessWidget {
       HttpClientResponse response = await request.close();
       String responseBody = await response.transform(utf8.decoder).join();
       print(responseBody);
-    } catch (e) {} finally {
+    } catch (e) {
+      print(e.toString());
+    } finally {
       client.close();
     }
   }
