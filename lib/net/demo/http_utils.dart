@@ -29,22 +29,45 @@ class HttpUtils {
     return _instance;
   }
 
-  Future<Response<T>> get<T>(String path) {
+  void addInterceptor(List<InterceptorsWrapper> list) {
+    _dio.interceptors.clear();
+    _dio.interceptors.addAll(list);
+  }
+
+  Future<Response<T>> get<T>(String path,
+      {Map params, ErrorCallback errorCallback}) {
     return this._request(path, GET);
   }
 
-  Future<Response<T>> post<T>(String path) {
+  Future<Response<T>> post<T>(String path,
+      {Map params, ErrorCallback errorCallback}) {
     return this._request(path, POST);
   }
 
   Future<Response<T>> _request<T>(String path, String method,
-      {ErrorCallback errorCallback}) async {
+      {Map params, ErrorCallback errorCallback}) async {
     try {
       Response<T> rep;
       if (method == 'GET') {
+        if (params != null && params.isNotEmpty) {
+          StringBuffer urlParam = StringBuffer();
+          urlParam.write('?');
+          params.forEach((key, value) {
+            urlParam.write('$key=$value&');
+          });
+          path = path + params.toString().substring(0, params.length - 1);
+        }
         rep = await _dio.get(path);
       } else if (method == 'POST') {
-        rep = await _dio.post(path);
+        if (params == null || params.isEmpty) {
+          rep = await _dio.post(path);
+        } else {
+          rep = await _dio.post(path, data: params);
+        }
+      }
+      if (rep != null && rep.statusCode != 200 && errorCallback != null) {
+        errorCallback('server response error: ${rep.statusCode}');
+        return null;
       }
       return rep;
     } catch (e) {
