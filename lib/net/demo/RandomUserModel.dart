@@ -1,8 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'RandomUserModel.g.dart';
+
+/// https://flutterchina.club/json/
+
+@JsonSerializable()
 class RandomUserModel {
   List<UserDetail> results;
   PageInfo info;
+
+  RandomUserModel(this.results, this.info);
+
+  factory RandomUserModel.fromJson(Map<String, dynamic> json) =>
+      _$RandomUserModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RandomUserModelToJson(this);
 }
 
+@JsonSerializable()
 class UserDetail {
   String gender;
   Name name;
@@ -16,8 +31,28 @@ class UserDetail {
   Id id;
   Picture picture;
   String nat;
+
+  UserDetail(
+      this.gender,
+      this.name,
+      this.location,
+      this.email,
+      this.login,
+      this.dob,
+      this.registered,
+      this.phone,
+      this.cell,
+      this.id,
+      this.picture,
+      this.nat);
+
+  factory UserDetail.fromJson(Map<String, dynamic> json) =>
+      _$UserDetailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserDetailToJson(this);
 }
 
+@JsonSerializable()
 class Location {
   Street street;
   String city;
@@ -26,29 +61,68 @@ class Location {
   int postcode;
   Coordinates coordinates;
   Timezone timezone;
+
+  Location(this.street, this.city, this.state, this.country, this.postcode,
+      this.coordinates, this.timezone);
+
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LocationToJson(this);
 }
 
+@JsonSerializable()
 class Name {
   String title;
   String first;
   String last;
+
+  Name(this.title, this.first, this.last);
+
+  factory Name.fromJson(Map<String, dynamic> json) => _$NameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NameToJson(this);
 }
 
+@JsonSerializable()
 class Street {
   int number;
   String name;
+
+  Street(this.number, this.name);
+
+  factory Street.fromJson(Map<String, dynamic> json) => _$StreetFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StreetToJson(this);
 }
 
+@JsonSerializable()
 class Coordinates {
   String latitude;
   String longitude;
+
+  Coordinates(this.latitude, this.longitude);
+
+  factory Coordinates.fromJson(Map<String, dynamic> json) =>
+      _$CoordinatesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CoordinatesToJson(this);
 }
 
+@JsonSerializable()
 class Timezone {
   String offset;
   String description;
+
+  Timezone(this.offset, this.description);
+
+  factory Timezone.fromJson(Map<String, dynamic> json) =>
+      _$TimezoneFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TimezoneToJson(this);
 }
 
+@JsonSerializable()
 class Login {
   String uuid;
   String username;
@@ -57,32 +131,77 @@ class Login {
   String md5;
   String sha1;
   String sha256;
+
+  Login(this.uuid, this.username, this.password, this.salt, this.md5, this.sha1,
+      this.sha256);
+
+  factory Login.fromJson(Map<String, dynamic> json) => _$LoginFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LoginToJson(this);
 }
 
+@JsonSerializable()
 class Dob {
   String date;
   int age;
+
+  Dob(this.date, this.age);
+
+  factory Dob.fromJson(Map<String, dynamic> json) => _$DobFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DobToJson(this);
 }
 
+@JsonSerializable()
 class Registered {
   String date;
   int age;
+
+  Registered(this.date, this.age);
+
+  factory Registered.fromJson(Map<String, dynamic> json) =>
+      _$RegisteredFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RegisteredToJson(this);
 }
 
+@JsonSerializable()
 class Id {
   String name;
   String value;
+
+  Id(this.name, this.value);
+
+  factory Id.fromJson(Map<String, dynamic> json) => _$IdFromJson(json);
+
+  Map<String, dynamic> toJson() => _$IdToJson(this);
 }
 
+@JsonSerializable()
 class Picture {
   String large;
   String medium;
   String thumbnail;
+
+  Picture(this.large, this.medium, this.thumbnail);
+
+  factory Picture.fromJson(Map<String, dynamic> json) =>
+      _$PictureFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PictureToJson(this);
 }
 
+@JsonSerializable()
 class PageInfo {
   String seed;
   int results;
   int page;
   String version;
+
+  PageInfo(this.seed, this.results, this.page, this.version);
+
+  factory PageInfo.fromJson(Map<String, dynamic> json) =>
+      _$PageInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PageInfoToJson(this);
 }
