@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'RandomUserModel.g.dart';
+part 'random_user_model.g.dart';
 
 /// https://flutterchina.club/json/
 
