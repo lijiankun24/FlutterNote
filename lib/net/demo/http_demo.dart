@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/bloc/bloc_demo2.dart';
-import 'random_user_model.dart';
-import 'dart:async';
+
 import 'application.dart';
+import 'random_user_model.dart';
 
 class HttpDemo extends StatelessWidget {
   @override
@@ -21,6 +23,7 @@ class UserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RandomUserBLoC randomUserBLoC = BLoCProvider.of(context);
+    randomUserBLoC.updateUserInfo();
     return Scaffold(
       appBar: AppBar(
         title: Text('HttpDemo'),
@@ -28,13 +31,15 @@ class UserWidget extends StatelessWidget {
       body: Center(
         child: StreamBuilder(
           builder: (context, snapshot) {
-            return Image.network(
-              snapshot.data.results[0].picture.large,
+            return FadeInImage.assetNetwork(
+              placeholder: 'images/ali.jpg',
+              image: snapshot.data?.results[0]?.picture?.large,
               width: 100,
               height: 100,
             );
           },
           stream: randomUserBLoC.stream,
+          initialData: randomUserBLoC._randomUserModel,
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
@@ -45,7 +50,8 @@ class UserWidget extends StatelessWidget {
 }
 
 class RandomUserBLoC extends BaseBLoC {
-  StreamController _streamController = StreamController.broadcast();
+  StreamController<RandomUserModel> _streamController =
+      StreamController.broadcast();
   RandomUserModel _randomUserModel;
 
   RandomUserModel get user => _randomUserModel;

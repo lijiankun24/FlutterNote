@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provide/provide.dart';
 
+import 'net/demo/http_demo.dart';
 import 'provider/model/counter.dart';
 import 'provider/model/switcher.dart';
 import 'provider/provider_demo1.dart';
-import 'net/net_demo2.dart';
+import 'net/demo/application.dart';
+import 'net/demo/http_utils.dart';
 
 void main() {
-  runApp(DioDemo());
+  Application.httpUtils = HttpUtils("https://randomuser.me");
+  runApp(HttpDemo());
+//  runApp(DioDemo());
 //  testProvider();
 
   if (Platform.isAndroid) {
