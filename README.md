@@ -46,7 +46,9 @@
     <td></td>
     <td>
         - <a href="https://flutterchina.club/layout/">Flutter 中的合约束</a><br/>
-        - <a href="https://flutterchina.club/animations/">Flutter中的动画</a><br/>
+        - <a href="https://book.flutterchina.club/chapter5/constrainedbox_and_sizebox.html">尺寸限制类容器</a><br/>
+        - <a href="https://flutterchina.club/animations/">Flutter中的动画1</a><br/>
+        - <a href="https://flutterchina.club/tutorials/animation/">Flutter中的动画2</a><br/>
         - <a href="https://flutterchina.club/gestures/">Flutter 中的手势</a><br/>
     </td>
 </tr>
@@ -58,12 +60,17 @@
         Flutter 中的 StreamBuilder<br/>
         BLoc<br/>
         Provider<br/>
+        网络请求<br/>
     </td>
     <td>
         - <a href="https://juejin.im/post/5baa4b90e51d450e6d00f12e">Dart Stream</a><br/>
         - <a href="https://www.kikt.top/posts/flutter/dart/generators/">Dart generator</a><br/>
+        - <a href="https://juejin.im/post/5bb6f344f265da0aa664d68a">Flutter | 状态管理探索篇——BLoC(三)</a><br/>
+        - <a href="https://juejin.im/post/5cb340d0e51d456e2d69a75e">Flutter 入门指北(Part 11)之状态管理，BLoC</a><br/>
         - <a href="https://juejin.im/post/5ca396b5518825440563e0f5">Flutter BLoC</a><br/>
         - <a href="https://juejin.im/post/5c6d4b52f265da2dc675b407">Flutter 的亲儿子 Provider</a><br/>
+        - <a href="https://flutterchina.club/json/">JSON和序列化</a><br/>
+        - <a href="https://juejin.im/post/5cb3d9e4f265da038e549c7d">Flutter 入门指北(Part 13)之网络</a><br/>
     </td>
 </tr>
 </table>
@@ -76,3 +83,4 @@
 * 推荐资料
     * [Flutter Documentation](https://flutter.dev/docs)
     * [Flutter 实战](https://book.flutterchina.club/)
+    * [Flutter 指北系列](https://juejin.im/user/588719c72f301e0069a581f7/posts)
